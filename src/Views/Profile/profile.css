@@ -1,0 +1,23 @@
+
+
+.profileContainer{
+    width: 100%;
+    /* padding: 20px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+.bg-black{
+    background-color: black;
+}
+.text-orange{
+    color: black;
+}
+.Opacity-light{
+    opacity: 0.5;
+}
+.bg-Orange{
+    background-color: orange;
+}
