@@ -33,6 +33,14 @@ function Navbar({userInfo}) {
         </div>
     </nav>
     </div>
+    <div className='product-types'>
+      <button onClick={() => navigate('/product-type/Mobiles')}>Mobiles</button>
+      <button onClick={() => navigate('/product-type/Laptops')}>Laptops</button>
+      <button onClick={() => navigate('/product-type/Cameras')}>Cameras</button>
+      <button onClick={() => navigate('/product-type/Shoes')}>Shoes</button>
+
+
+    </div>
     </>
   )
 }

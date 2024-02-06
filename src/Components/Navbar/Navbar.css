@@ -1,6 +1,6 @@
 .navbar {
     display: flex;
-    /* justify-content: flex-end !important; */
+    justify-content: flex-end;
     width: 100%;
     background-color: black;
     align-items: center;
@@ -18,21 +18,17 @@ nav {
 }
 
 nav button {
+    margin: 1px 5px;
     background-color: black;
     border: none;
     color: white;
     padding: 5px;
-    margin-left: 20px;
 }
 
 nav button:hover {
     background-color: white;
     color: #ffbb00;
     border-radius: 10px;
-}
-
-.navbar-btn{
-    margin: 0px 10px;
 }
 
 .cart-icon-css {
@@ -48,7 +44,6 @@ nav button:hover {
 .cart-btn img {
     width: 30px;
     height: fit-content;
-    cursor: pointer;
 }
 
 .cart-icon-css {
@@ -60,12 +55,12 @@ nav button:hover {
     justify-content: center;
     border-radius: 30px;
     position: relative;
-    top: -5px;
-    right: 0px;
+    top: 0px;
+    right: 7px;
     text-decoration: none;
     font-size: 12px;
+    font-weight: 300;
 }
-
 
 .cart-icon-css:hover {
     background-color: white;
@@ -76,7 +71,6 @@ nav button:hover {
 .profile-icon {
     width: 30px;
     padding-right: 10px;
-    cursor: pointer;
 
 }
 
@@ -90,4 +84,28 @@ nav button:hover {
     background-color: white;
     color: rgb(255, 187, 0);
     cursor: pointer;
+}
+
+
+.product-types {
+    background-color: #ffbb00;
+    display: flex;
+    justify-content: center;
+}
+
+
+.product-types button {
+    background-color: #ffbb00;
+    padding: 0px 5px;
+    margin: 8px 15px;
+    border: 2px solid white;
+    color: white;
+    border-radius: 5px;
+    font-size: 13px;
+}
+
+.product-types button:hover {
+    background-color: white;
+    color: black;
+    font-weight: 600;
 }

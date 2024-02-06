@@ -10,6 +10,8 @@ import { auth, getUser } from "./firebase";
 import { useEffect, useState } from "react";
 import Contactus from "../Views/Contact/Contactus";
 import AddProduct from '../Views/Sell/sell'
+import AllProductPage from "../Views/RenderProducts/AllProductPage";
+
 
 const router = createBrowserRouter([
     {
@@ -44,7 +46,20 @@ const router = createBrowserRouter([
             },{
                 path: '/AddProduct',
                 element: <AddProduct />
+            },{
+                path: '/product-type/Mobiles',
+                element: <AllProductPage  type={'Mobile'} />
+            },{
+                path: '/product-type/Laptops',
+                element: <AllProductPage  type={'Laptop'} />
+            },{
+                path: '/product-type/Cameras',
+                element: <AllProductPage  type={'Camera'} />
+            },{
+                path: '/product-type/Shoes',
+                element: <AllProductPage  type={'Shoes'} />
             }
+            
         ]
 
     },

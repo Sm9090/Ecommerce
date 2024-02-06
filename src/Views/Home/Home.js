@@ -1,14 +1,13 @@
 import React from 'react'
-import Navbar from '../../Components/Navbar/Navbar'
-import Products from '../../Components/Products/Products'
 import Banner from '../../Components/Banner/Banner'
+import Slider from '../../Components/ProductSlider/Slider'
 
 function Home() {
   return (
     <>
     <main>
       <Banner />
-      <Products />
+       <Slider type={'Mobile'}/>
     </main>
     </>
   )
