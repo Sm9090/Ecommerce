@@ -61,7 +61,7 @@ export async function postAdToDb(ad) {
     await uploadBytes(storageRef, productImg)
     const url = await getDownloadURL(storageRef)
     ad.productImg = url
-    const collectionRef = collection(db, `Products-${productType}` );
+    const collectionRef = collection(db, `Products-${productType.charAt(0).toUpperCase()}${productType.slice(1).toLowerCase()}` );
     await addDoc(collectionRef, ad)
   } catch (e) {
     console.log(e.message)

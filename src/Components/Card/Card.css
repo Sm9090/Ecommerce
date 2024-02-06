@@ -60,3 +60,6 @@
     background-color: black;
     color: #ffbb00;
 }
+ul li{
+    width: auto !important;
+}
