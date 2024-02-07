@@ -1,9 +1,11 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import './Card.css'
 
 function Card(productDetail) {
-  const {product:{productImg , productTitle ,  price , waranty, description, brand}} = productDetail
-
+  const {product:{productImg , productTitle ,  price , waranty, description, brand ,id}} = productDetail
+  const navigate = useNavigate()
+  
   const overAllTax = 10/100
   const commission = 10/100
   const discount = 10/100
@@ -27,9 +29,9 @@ function Card(productDetail) {
           <p className='youSave'>You Save: {saving}</p>
         </div>
         
-        <button className='showMore-btn'>Show More &gt; </button>
-
-
+        <button className='showMore-btn' onClick={() => navigate(`/Product/${id}/${productTitle}`)}>
+          Show More &gt; 
+          </button>
       </div>
     </div>
   )

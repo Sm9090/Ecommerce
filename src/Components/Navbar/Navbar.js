@@ -1,6 +1,6 @@
 import React from 'react'
-import './Navbar.css'
 import { useNavigate } from 'react-router-dom'
+import './Navbar.css'
 import Cartlogo from '../assets/Cartlogo.png'
 import Applogo from '../assets/applogo.png'
 import AccountMenu from '../AccountMenu/Account'

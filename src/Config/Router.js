@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import Contactus from "../Views/Contact/Contactus";
 import AddProduct from '../Views/Sell/sell'
 import AllProductPage from "../Views/RenderProducts/AllProductPage";
+import ProductDetail from "../Views/ProductDetail/ProductDetail";
 
 
 const router = createBrowserRouter([
@@ -58,6 +59,9 @@ const router = createBrowserRouter([
             },{
                 path: '/product-type/Shoes',
                 element: <AllProductPage  type={'Shoes'} />
+            },{
+                path: '/product/:adId/:adTitle',
+                element: <ProductDetail />
             }
             
         ]

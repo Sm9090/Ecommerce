@@ -20,8 +20,6 @@ function AllProductPage(props) {
       console.log(res)
       setProducts(res)
     }
-    console.log(props.type)
-    console.log(products)
 
     if(!products){
       return <div>loading</div>

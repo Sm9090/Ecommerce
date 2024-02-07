@@ -5,8 +5,6 @@ import { getProduct } from '../../Config/firebase'
 import Card from '../Card/Card'
 
 function Slider(props) {
-
-    console.log(props)
     const [products ,setProducts] = useState([])
 
     useEffect(()=>{
@@ -18,7 +16,6 @@ function Slider(props) {
     setProducts(res)
     }
 
-    console.log(products)
     
     const responsive = {
         superLargeDesktop: {

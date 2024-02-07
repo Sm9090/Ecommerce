@@ -3,7 +3,7 @@
     flex-direction: column;
     background-color: rgb(255, 255, 255);
     margin: 5px;
-    width: 280px;
+    /* width: 280px; */
     border: 1px solid rgb(245, 245, 245);
     box-shadow: 0px 0px 2px 0px grey;
     padding: 10px;
@@ -59,7 +59,4 @@
 .showMore-btn:hover {
     background-color: black;
     color: #ffbb00;
-}
-ul li{
-    width: auto !important;
 }

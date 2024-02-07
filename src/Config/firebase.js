@@ -83,10 +83,15 @@ export async function getProduct(props) {
     querySnapshot.forEach((doc) => {
       productsArr.push({ ...doc.data(), id: doc.id });
     });
+    // console.log(productsArr)
 
     return productsArr;
   } catch (error) {
     console.error("Error fetching products:", error);
     return []; // Return an empty array or handle the error as needed
   }
+}
+
+export async function getSingleAd(){
+  
 }
