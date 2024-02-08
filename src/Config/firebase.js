@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { getFirestore, setDoc, doc, getDoc, collection, addDoc ,getDocs, query } from "firebase/firestore";
+import { getFirestore, setDoc, doc, getDoc, collection, addDoc, getDocs, query } from "firebase/firestore";
 import { getStorage, uploadBytes, getDownloadURL, ref } from "firebase/storage";
 import { getApp } from "firebase/app";
 
@@ -55,13 +55,14 @@ export const getUser = async (uid) => {
 
 
 export async function postAdToDb(ad) {
-  let { productImg ,productType } = ad
+  let { productImg, productType } = ad
   try {
+    const path = `Products-${productType.charAt(0).toUpperCase()}${productType.slice(1).toLowerCase()}`
     const storageRef = ref(storage, `Product-${productImg.name}`);
     await uploadBytes(storageRef, productImg)
     const url = await getDownloadURL(storageRef)
     ad.productImg = url
-    const collectionRef = collection(db, `Products-${productType.charAt(0).toUpperCase()}${productType.slice(1).toLowerCase()}` );
+    const collectionRef = collection(db, path);
     await addDoc(collectionRef, ad)
   } catch (e) {
     console.log(e.message)
@@ -92,6 +93,17 @@ export async function getProduct(props) {
   }
 }
 
-export async function getSingleAd(){
-  
+export async function getSingleAd(adId ,adType) {
+  const path = `Products-${adType.charAt(0).toUpperCase()}${adType.slice(1).toLowerCase()}`  
+  const docRef = doc(db, path, adId);
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+    console.log("Document data:", docSnap.data());
+    return {...docSnap.data() , id: adId}
+  } else {
+    // docSnap.data() will be undefined in this case
+    console.log("No such document!");
+  }
+
 }
