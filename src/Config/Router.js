@@ -60,7 +60,7 @@ const router = createBrowserRouter([
                 path: '/product-type/Shoes',
                 element: <AllProductPage  type={'Shoes'} />
             },{
-                path: '/product/:adId/:adTitle',
+                path: '/product/:adId/:adType',
                 element: <ProductDetail />
             }
             

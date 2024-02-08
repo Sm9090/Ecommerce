@@ -4,7 +4,7 @@ import './product.css'
 
 
 function ProductContainer(productDetail) {
-  const {product:{productImg , productTitle ,  price ,id }} = productDetail
+  const {product:{productImg , productTitle ,  price ,id ,productType }} = productDetail
   const navigate = useNavigate()
 
   const overAllTax = 10/100
@@ -18,7 +18,7 @@ function ProductContainer(productDetail) {
 
 
   return (
-    <div className='product-container' onClick={()=>navigate(`/Product/${id}/${productTitle}`)}>
+    <div className='product-container' onClick={()=>navigate(`/Product/${id}/${productType}`)}>
       <img src={productImg} />
       <div className='product-detail'>
         <p className='productTitle'>{productTitle}</p>
