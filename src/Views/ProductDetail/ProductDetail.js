@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState ,useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import { getSingleAd } from '../../Config/firebase'
-import { useEffect } from 'react'
+import { updateCart } from '../../store/cartSlice' 
 import './productDetail.css'
 
 function ProductDetail() {
 
+    const dispatch = useDispatch()
     const { adId, adType } = useParams()
     const [ad, setAd] = useState({})
 
@@ -17,6 +19,12 @@ function ProductDetail() {
         const res = await getSingleAd(adId, adType)
         setAd(res)
         console.log(ad)
+    }
+
+
+    const addToCart = () =>{
+       console.log('ad' , ad)
+       dispatch(updateCart(ad))
     }
 
     const overAllTax = 10 / 100
@@ -71,7 +79,7 @@ function ProductDetail() {
                     </div>
                     <div className='buy-cart'>
                         <button className='btn'>Buy now </button>
-                        <button className='btn'>Add To Cart</button>
+                        <button className='btn' onClick={addToCart}>Add To Cart</button>
                     </div>
                     </div>
 
