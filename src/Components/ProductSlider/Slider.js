@@ -9,12 +9,13 @@ function Slider(props) {
 
     useEffect(()=>{
         getAds()
-    },[])
-
-    const getAds= async()=>{
-    const res = await getProduct(props)
-    setProducts(res)
-    }
+      },[])
+      
+      const getAds= async()=>{
+        const res = await getProduct(props)
+        setProducts(res)
+      }
+      console.log(products)
 
     
     const responsive = {

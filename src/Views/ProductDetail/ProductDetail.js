@@ -1,15 +1,19 @@
-import React, { useState ,useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { getSingleAd } from '../../Config/firebase'
-import { updateCart } from '../../store/cartSlice' 
+import { updateCart } from '../../store/cartSlice'
 import './productDetail.css'
+import Slider from '../../Components/ProductSlider/Slider'
 
 function ProductDetail() {
 
     const dispatch = useDispatch()
     const { adId, adType } = useParams()
     const [ad, setAd] = useState({})
+    
+    const type = adType.charAt(0).toUpperCase()+adType.toLowerCase().slice(1)
+    console.log(type)
 
     useEffect(() => {
         getSingleProduct()
@@ -22,9 +26,8 @@ function ProductDetail() {
     }
 
 
-    const addToCart = () =>{
-       console.log('ad' , ad)
-       dispatch(updateCart(ad))
+    const addToCart = () => {
+        dispatch(updateCart(ad))
     }
 
     const overAllTax = 10 / 100
@@ -38,34 +41,33 @@ function ProductDetail() {
 
 
     return (
-        <div>
-            <div className='prod-container'>
-                <div className='prod-img-container'>
-                    <img src={ad.productImg} />
+        <div className='prod-container'>
+            <div className='prod-img-container'>
+                <img src={ad.productImg} />
+            </div>
+            <div className='prod-data'>
+                <p className='prod-head'>{ad.productTitle}</p>
+                <div className='price-container'>
+                    <p className='mrp'>MRP:<p className='rate'>{mrp}</p></p>
+                    <p className='salePrice'>Discounted Price:<p className='rate'>{salePrice}</p></p>
+                    <p className='youSave'>You Save: {saving}</p>
+
                 </div>
-                <div className='prod-data'>
-                    <p className='prod-head'>{ad.productTitle}</p>
-                    <div className='price-container'>
-                        <p className='mrp'>MRP:<p className='rate'>{mrp}</p></p>
-                        <p className='salePrice'>Discounted Price:<p className='rate'>{salePrice}</p></p>
-                        <p className='youSave'>You Save: {saving}</p>
+                <p className='prod-details-head'>Details</p>
+                <p className='prod-description'>{ad.description}</p>
 
-                    </div>
-                    <p className='prod-detail-head'>Details</p>
-                    <p className='prod-description'>{ad.description}</p>
-
-                    <div className='row-container'>
-                        <div className='waranty-replacement'>
-                                                <div className='cod'>
+                <div className='row-container'>
+                    <div className='warranty-replacement'>
+                        <div className='cod'>
                             <div className='image-circle'>
                                 <img src='https://cdn-icons-png.flaticon.com/512/9198/9198191.png' />
                             </div>
                             <p>Cash on Delivery</p>
                         </div>
 
-                        <div className='waranty'>
+                        <div className='warranty'>
                             <div className='image-circle'>
-                                <img src='https://static.vecteezy.com/system/resources/previews/011/654/825/original/warranty-icon-vector-graphic-free-png.png'  />
+                                <img src='https://static.vecteezy.com/system/resources/previews/011/654/825/original/warranty-icon-vector-graphic-free-png.png' />
                             </div>
                             <p>{ad.waranty}</p>
                         </div>
@@ -81,11 +83,13 @@ function ProductDetail() {
                         <button className='btn'>Buy now </button>
                         <button className='btn' onClick={addToCart}>Add To Cart</button>
                     </div>
-                    </div>
-
                 </div>
-
             </div>
+            <p className='prod-details-head2'>
+                Related items
+            </p>
+            <Slider type={type}/>
+            
         </div>
     )
 }
