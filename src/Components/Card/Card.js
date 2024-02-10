@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import './Card.css'
 
 function Card(productDetail) {
+  
   const {product:{productImg , productTitle ,  price ,id ,productType}} = productDetail
   const navigate = useNavigate()
   
