@@ -15,7 +15,6 @@ function Slider(props) {
         const res = await getProduct(props)
         setProducts(res)
       }
-      console.log(products)
 
     
     const responsive = {

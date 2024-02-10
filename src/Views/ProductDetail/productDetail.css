@@ -3,7 +3,7 @@
 }
 
 .prod-img-container {
-    width: 2000px;
+    width: 500px;
     margin-right: 20PX;
 }
 
@@ -54,7 +54,8 @@
     margin: 20px;
     color: #ffbb00;
     border-bottom: 2px solid #ffbb00;
-    width: 200px;
+    width: auto;
+    text-align: center;
 }
 
 .buy-cart {
@@ -113,4 +114,8 @@
     align-items: center;
     justify-content: space-between;
     width: 550PX;
+}
+
+.margintop{
+    margin-top: 10px;
 }

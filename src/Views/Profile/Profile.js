@@ -1,36 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
-import { onAuthStateChanged } from "firebase/auth";
-import { auth, getUser } from "../../Config/firebase";
-import { Box, Skeleton } from '@mui/material';
+import { useSelector } from 'react-redux';
 import './profile.css'
 
 function UserProfile() {
+  
+  const userInfo = useSelector(state => state.userReducer.user)
 
-  const [userInfo , setUserInfo] = useState({})
-  const [loading , setLoading] = useState(true)
-  const navigate = useNavigate()
-
-  useEffect(() =>{
-  onAuthStateChanged(auth, async (user) => {
-    if (user) {
-        const uid = user.uid;
-        const userData = await getUser(uid)
-        console.log(userData)
-        setUserInfo(userData)
-        setLoading(false)
-    } else {
-        navigate('/login')
-        setUserInfo({})
-    }
-  })
-  },[])
-
-    if(loading){
-      return <div>
-        </div>
-    }
-
+  if(!userInfo){
+    return <div>loading...</div>
+  }
   
   return (
     <div className='profileContainer'>

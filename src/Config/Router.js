@@ -1,17 +1,21 @@
 import { createBrowserRouter, RouterProvider, Outlet, useNavigate } from "react-router-dom";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth, getUser } from "./firebase";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import Home from "../Views/Home/Home";
 import Signup from "../Views/Signup/Signup";
 import Login from "../Views/Login/Login";
 import UserProfile from "../Views/Profile/Profile"
 import Cart from "../Views/Cart/Cart";
 import Navbar from "../Components/Navbar/Navbar";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth, getUser } from "./firebase";
-import { useEffect, useState } from "react";
 import Contactus from "../Views/Contact/Contactus";
 import AddProduct from '../Views/Sell/sell'
 import AllProductPage from "../Views/RenderProducts/AllProductPage";
 import ProductDetail from "../Views/ProductDetail/ProductDetail";
+import { removeUser,  setUser } from "../store/userSlice";
+// import { useSelector } from "react-redux";
+import { removeCart } from "../store/cartSlice";
 
 
 const router = createBrowserRouter([
@@ -75,28 +79,32 @@ function Layout() {
 
     const [userInfo, setUserInfo] = useState({})
     const [loading, setLoading] = useState(true)
-    const [user, setUser] = useState()
+    const [user, setUpUser] = useState()
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     useEffect(() => {
         onAuthStateChanged(auth, async (user) => {
             if (user) {
                 const uid = user.uid;
                 const userData = await getUser(uid)
-                console.log(userData)
                 setUserInfo(userData)
                 setLoading(false)
-                setUser(user)
+                setUpUser(user)
+                dispatch(setUser(userData))
             } else {
                 navigate('/login')
                 setUserInfo({})
                 setLoading(false)
+                dispatch(removeUser(null))
+                dispatch(removeCart([]))
+
             }
         }
         );
     }, [])
-
-
+    
+    
     useEffect(() => {
         const path = window.location.pathname
         if (user) {
@@ -109,7 +117,7 @@ function Layout() {
             }
         }
     }, [window.location.pathname, user])
-
+    
 
     if (loading) {
         return <div>loading..</div>
