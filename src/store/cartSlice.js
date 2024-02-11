@@ -9,8 +9,8 @@ const cartSlice = createSlice({
       updateCart: (state, data) => {
         state.cart.push(data.payload)
       },
-      removeCart: (state) =>{
-        state.cart = []
+      removeCart: (state ,data) =>{
+        state.cart.splice(data.payload , 1)
       }
     }
   })

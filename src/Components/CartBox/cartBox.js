@@ -1,9 +1,14 @@
 import React, { useState } from 'react'
+import './cartBox.css'
+import { useDispatch, useSelector } from 'react-redux'
+import { removeCart } from '../../store/cartSlice'
 
-function CartBox(itemData) {
+function CartBox({ itemData, index }) {
 
-    const { itemData: { brand, customerSupport, description, price, productImg, productType, productTitle, waranty } } = itemData
-const [prodQuantity ,setProdQuantity] = useState(1)
+    const { price, productImg, productTitle } = itemData
+    const [prodQuantity, setProdQuantity] = useState(1)
+
+    const dispatch = useDispatch()
 
     const overAllTax = 10 / 100
     const commission = 10 / 100
@@ -22,6 +27,11 @@ const [prodQuantity ,setProdQuantity] = useState(1)
         if (prodQuantity >= 1) {
             setProdQuantity(prodQuantity - 1)
         }
+    }
+
+    const deleteCartItem = () => {
+        dispatch(removeCart(index))
+
 
     }
     return (
@@ -39,7 +49,10 @@ const [prodQuantity ,setProdQuantity] = useState(1)
                 <p>{prodQuantity}</p>
                 <button onClick={decreaseQuantity}>-</button>
             </div>
-            <div></div>
+            <div className='prodPrice'>{salePrice * prodQuantity}</div>
+            <button className='deleteBtn' onClick={deleteCartItem}>
+                <img src='https://cdn-icons-png.flaticon.com/512/6861/6861362.png' />
+            </button>
         </div>
     )
 }
