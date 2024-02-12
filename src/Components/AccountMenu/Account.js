@@ -37,7 +37,11 @@ export default function AccountMenu({fullName}) {
   }
 
   const handleLogout = () => {
+    if(fullName){
     logout()
+  }else{
+    navigate('/Login')
+  }
     handleClose()
   }
   return (
@@ -105,7 +109,7 @@ export default function AccountMenu({fullName}) {
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon >
-          Logout
+          {fullName?  'Logout' : 'Log In'}
         </MenuItem>
       </Menu>
     </React.Fragment>

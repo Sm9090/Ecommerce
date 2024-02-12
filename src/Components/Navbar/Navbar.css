@@ -44,6 +44,7 @@ nav button:hover {
 .cart-btn img {
     width: 30px;
     height: fit-content;
+    cursor: pointer;
 }
 
 .cart-icon-css {
