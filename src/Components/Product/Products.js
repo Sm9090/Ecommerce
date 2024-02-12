@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from  'react'
 import { useNavigate } from 'react-router-dom'
 import './product.css'
 
@@ -6,19 +6,19 @@ import './product.css'
 function ProductContainer(productDetail) {
   const {product:{productImg , productTitle ,  price ,id ,productType }} = productDetail
   const navigate = useNavigate()
-
+  
   const overAllTax = 10/100
   const commission = 10/100
   const discount = 10/100
-
+  
   let mrp = parseInt(price)
-   mrp = mrp + overAllTax*mrp + commission*mrp  
-   const salePrice = mrp - discount*mrp
-   const saving = mrp-salePrice
+  mrp = mrp + overAllTax*mrp + commission*mrp  
+  const salePrice = mrp - discount*mrp
+  const saving = mrp-salePrice
+  
 
-
-  return (
-    <div className='product-container' onClick={()=>navigate(`/Product/${id}/${productType}`)}>
+   return (
+    <div className='product-container'>
       <img src={productImg} />
       <div className='product-detail'>
         <p className='productTitle'>{productTitle}</p>
@@ -28,9 +28,7 @@ function ProductContainer(productDetail) {
           <p className='youSave'>You Save: {saving}</p>
         </div>
         <div className='buy-cart'>
-          <button className='btn'>Buy Now</button>
-          <button className='btn'>Add to Cart</button>
-
+          <button className='btn'  onClick={()=>navigate(`/Product/${id}/${productType}`)}>More Detail</button>
         </div>
 
       </div>

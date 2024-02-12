@@ -53,8 +53,7 @@
     line-height: 0px;
     border-radius: 40px;
     &&:active{
-        background-color: #ffbb00;
-        color: white;
+        background-color: black;
     }
 }
 

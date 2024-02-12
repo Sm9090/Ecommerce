@@ -15,19 +15,19 @@ function ProductDetail() {
     const [ad, setAd] = useState({})
     const [sucessMsg, setSucessMsg] = useState()
     const [errorMsg, setErrorMsg] = useState()
-
+        
     const type = adType.charAt(0).toUpperCase() + adType.toLowerCase().slice(1)
-
+    
     useEffect(() => {
         getSingleProduct()
-    }, [])
-
+    }, [adId])
+    
     const getSingleProduct = async () => {
         const res = await getSingleAd(adId, adType)
         setAd(res)
         console.log(ad)
     }
-
+    
 
     const addToCart = () => {
         if (user) {

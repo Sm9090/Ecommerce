@@ -112,7 +112,7 @@ function Layout() {
                 navigate('/')
             }
         } else {
-            if (path === '/Contact' || path === '/Profile' || path === '/Cart') {
+            if (path === '/Contact' || path === '/Profile' || path === '/AddProduct') {
                 navigate('/Login')
             }
         }
