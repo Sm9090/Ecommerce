@@ -1,8 +1,12 @@
 import React from 'react'
+import MapComponent from '../../Components/MapIntegragtion/Map';
 
 function Contactus() {
+  const mapKey = 'AIzaSyAWleTAMOPAcHeWptvRkOm_D20sjkOltHI';
   return (
-    <div>Contactus</div>
+    <div> 
+      <MapComponent />
+  </div>
   )
 }
 
