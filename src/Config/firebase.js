@@ -55,17 +55,28 @@ export const getUser = async (uid) => {
 
 
 export async function postAdToDb(ad) {
-  let { productImg, productType } = ad
   try {
-    const path = `Products-${productType.charAt(0).toUpperCase()}${productType.slice(1).toLowerCase()}`
-    const storageRef = ref(storage, `Product-${productImg.name}`);
-    await uploadBytes(storageRef, productImg)
-    const url = await getDownloadURL(storageRef)
-    ad.productImg = url
+    const { productImg, productType } = ad;
+
+    const path = `Products-${productType.charAt(0).toUpperCase()}${productType.slice(1).toLowerCase()}`;
+    const urls = [];
+
+    // Upload each image and get its URL
+    for (const file of productImg) {
+      const storageRef = ref(storage, `Product-${file.name}`);
+      await uploadBytes(storageRef, file);
+      const url = await getDownloadURL(storageRef);
+      urls.push(url);
+    }
+
+    // Update ad with the array of image URLs
+    ad.productImg = urls;
+
+    // Add the updated ad to the Firestore collection
     const collectionRef = collection(db, path);
-    await addDoc(collectionRef, ad)
+    await addDoc(collectionRef, ad);
   } catch (e) {
-    console.log(e.message)
+    console.log(e.message);
   }
 }
 

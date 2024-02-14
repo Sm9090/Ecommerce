@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Alert } from '@mui/material'
+import Carousel from 'react-multi-carousel'
+import "react-multi-carousel/lib/styles.css";
 import { getSingleAd } from '../../Config/firebase'
 import { updateCart } from '../../store/cartSlice'
 import './productDetail.css'
@@ -13,21 +15,25 @@ function ProductDetail() {
     const dispatch = useDispatch()
     const { adId, adType } = useParams()
     const [ad, setAd] = useState({})
+    const [images, setImages] = useState([])
     const [sucessMsg, setSucessMsg] = useState()
     const [errorMsg, setErrorMsg] = useState()
-        
+
     const type = adType.charAt(0).toUpperCase() + adType.toLowerCase().slice(1)
-    
+
     useEffect(() => {
         getSingleProduct()
     }, [adId])
-    
+
     const getSingleProduct = async () => {
         const res = await getSingleAd(adId, adType)
         setAd(res)
-        console.log(ad)
+        setImages(Array.isArray(res.productImg) ? res.productImg : []);
     }
-    
+
+    console.log(ad)
+
+
 
     const addToCart = () => {
         if (user) {
@@ -35,12 +41,12 @@ function ProductDetail() {
             setSucessMsg('Added In Your Cart')
             setTimeout(() => {
                 setSucessMsg('')
-            },2000)
+            }, 2000)
         } else {
             setErrorMsg('You need to login First')
             setTimeout(() => {
                 setErrorMsg('')
-        },2000)
+            }, 2000)
         }
     }
 
@@ -54,11 +60,39 @@ function ProductDetail() {
     const saving = mrp - salePrice
 
 
+    const responsive = {
+        superLargeDesktop: {
+            // the naming can be any, depends on you.
+            breakpoint: { max: 4000, min: 3000 },
+            items: 1
+        },
+        desktop: {
+            breakpoint: { max: 3000, min: 1024 },
+            items: 1
+        },
+        tablet: {
+            breakpoint: { max: 1024, min: 464 },
+            items: 1
+        },
+        mobile: {
+            breakpoint: { max: 464, min: 0 },
+            items: 1
+        }
+    };
+
     return (
         <div>
             <div className='prod-container'>
                 <div className='prod-img-container'>
-                    <img src={ad.productImg} />
+                    {images.length > 1 ? (
+                        <Carousel responsive={responsive}>
+                            {images.map((image, index) => (
+                                <img key={index} src={image} alt={`Product Image ${index + 1}`} />
+                            ))}
+                        </Carousel>
+                    ) : (
+                        <img src={ad.productImg} alt="Product Image" />
+                    )}
                 </div>
                 <div className='prod-data'>
                     <p className='prod-head'>{ad.productTitle}</p>
@@ -99,16 +133,16 @@ function ProductDetail() {
                             <button className='btn' onClick={addToCart}>Add To Cart</button>
                         </div>
                     </div>
-            {sucessMsg && <div className='margintop'>
-                    <Alert
-                        size="md"
-                        severity="success">{sucessMsg}</Alert>
-            </div>}
-            {errorMsg && <div className='margintop'>
-                    <Alert
-                        size="md"
-                        severity="error">{errorMsg}</Alert>
-            </div>}
+                    {sucessMsg && <div className='margintop'>
+                        <Alert
+                            size="md"
+                            severity="success">{sucessMsg}</Alert>
+                    </div>}
+                    {errorMsg && <div className='margintop'>
+                        <Alert
+                            size="md"
+                            severity="error">{errorMsg}</Alert>
+                    </div>}
                 </div>
             </div>
             <p className='prod-details-head2'>
