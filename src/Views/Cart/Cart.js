@@ -5,18 +5,25 @@ import './Cart.css'
 
 function Cart() {
   const cart = useSelector(state => state.cartReducer.cart)
-  const [priceFromChild , setPriceFromChild] = useState()
-  console.log(cart)
+  const [totalAmount , setTotalAmount] = useState(0)
 
+  useEffect(() => {
+    
+  }, []);
+ 
+  
   if (cart.length === 0) {
     return <div>
       <h2>Your Cart is Empty</h2>
     </div>
   }
 
-  const handlePrice =(price) =>{
-    setPriceFromChild(price)
-  }
+   const x = 0
+    function handlePrice(amount){
+    console.log(amount)
+       setTotalAmount(prev => prev + amount);
+      console.log(totalAmount)
+    }
 
   return (
     <div>
@@ -27,6 +34,7 @@ function Cart() {
           <CartBox key={index} index={index} itemData={item} handlePrice={handlePrice}/>
         </div>
       })}
+      {/* <div>Total: {totalAmount}</div> */}
       </div>
       </div>
   )

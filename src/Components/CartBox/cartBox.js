@@ -3,46 +3,44 @@ import './cartBox.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { removeCart } from '../../store/cartSlice'
 
-function CartBox({ itemData, index , handlePrice }) {
+function CartBox({ itemData, index, handlePrice }) {
 
     const { price, productImg, productTitle } = itemData
     const [prodQuantity, setProdQuantity] = useState(1)
-    
+
     const dispatch = useDispatch()
-    
+
+    useEffect(() => {
+        handlePrice(totalPrice)
+    }, [prodQuantity])
+
     const overAllTax = 10 / 100
     const commission = 10 / 100
     const discount = 10 / 100
-    
+
     let mrp = parseInt(price)
     mrp = mrp + overAllTax * mrp + commission * mrp
     const salePrice = mrp - discount * mrp
+    const totalPrice = salePrice * prodQuantity
+
 
     const increaseQuantity = () => {
         setProdQuantity(prodQuantity + 1)
     }
-    
+
     const decreaseQuantity = () => {
-        if (prodQuantity >= 1) {
+        if (prodQuantity > 1) {
             setProdQuantity(prodQuantity - 1)
         }
     }
-    const totalPrice = salePrice * prodQuantity
-    const [total ,setTotal] = useState(totalPrice)
-    
+
     const deleteCartItem = () => {
         dispatch(removeCart(index))
+        handlePrice(-totalPrice)
     }
-    
-    // setTotal(totalPrice)
-    useEffect(()=>{
-        sendDataTooParent()
-    },[])
 
-    const sendDataTooParent=()=>{
-        handlePrice(total)
-    }
-    // setTotal(totalPrice)
+
+
     return (
         <div className='cart-prod-container'>
             <div className='cart-prod-imgTitle'>
