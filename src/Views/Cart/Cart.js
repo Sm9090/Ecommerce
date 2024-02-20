@@ -18,11 +18,9 @@ function Cart() {
     </div>
   }
 
-   const x = 0
+  
     function handlePrice(amount){
-    console.log(amount)
        setTotalAmount(prev => prev + amount);
-      console.log(totalAmount)
     }
 
   return (

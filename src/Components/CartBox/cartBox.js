@@ -10,10 +10,6 @@ function CartBox({ itemData, index, handlePrice }) {
 
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        handlePrice(totalPrice)
-    }, [prodQuantity])
-
     const overAllTax = 10 / 100
     const commission = 10 / 100
     const discount = 10 / 100
@@ -26,11 +22,13 @@ function CartBox({ itemData, index, handlePrice }) {
 
     const increaseQuantity = () => {
         setProdQuantity(prodQuantity + 1)
+        handlePrice(salePrice)
     }
 
     const decreaseQuantity = () => {
         if (prodQuantity > 1) {
             setProdQuantity(prodQuantity - 1)
+            handlePrice(-salePrice)
         }
     }
 
