@@ -1,6 +1,5 @@
 .allProductPage .heading {
     background-color: rgb(240, 240, 240);
-    height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,4 +17,13 @@
     justify-content: center;
     align-items: center;
     margin-top: 20px;
+}
+
+@media  only screen and (max-width: 550px) {
+    .allProductPage .heading  p{
+        font-size: 25px;
+    }
+    .product-container{
+        width: 100%;
+    }
 }

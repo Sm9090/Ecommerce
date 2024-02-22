@@ -8,6 +8,7 @@ import AccountMenu from '../AccountMenu/Account'
 
 
 
+
 function Navbar({ userInfo }) {
   const navigate = useNavigate()
   const cart = useSelector(state => state.cartReducer.cart)
@@ -19,6 +20,9 @@ function Navbar({ userInfo }) {
           <img src={Applogo} />
         </div>
         <nav>
+          <div className='navbar-hamburger'>
+
+          </div>
           <div className='navbar-btn'>
             <button onClick={() => navigate('/Home')}>Home</button>
             <button onClick={() => navigate('/AddProduct')}>Sell</button>

@@ -6,7 +6,7 @@
     padding: 10px;
     align-items: center;
     justify-content: space-between;
-    width: 900px;
+    width: 80vw;
 }
 
 .cart-prod-imgTitle {
@@ -89,4 +89,26 @@
     max-width: 90%;
     max-height: 90%;
     /* border: none; */
+}
+@media  only screen and (max-width: 630px) {
+    .cart-prod-container{
+        width: 95vw;
+    }
+}
+@media  only screen and (max-width: 570px) {
+    .cart-prod-container{
+        width: 95vw;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+.cart-prod-imgTitle{
+        width: auto;
+
+    }
+    .prodPrice{
+        justify-content: center;
+    }
+   
 }

@@ -110,3 +110,19 @@ nav button:hover {
     color: black;
     font-weight: 600;
 }
+
+@media only screen and (max-width: 440px) {
+    .navbar{
+        justify-content: center;
+    }
+    
+}
+@media only screen and (max-width: 320px) {
+    .navbar{
+        justify-content: center;
+    }
+    
+    .navbar .navbar-btn{
+        font-size: 14px;
+    }
+}

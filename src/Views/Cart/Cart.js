@@ -6,6 +6,7 @@ import './Cart.css'
 function Cart() {
   const cart = useSelector(state => state.cartReducer.cart)
   const [totalAmount , setTotalAmount] = useState(0)
+  console.log(cart)
 
   useEffect(() => {
     

@@ -28,7 +28,7 @@ function AllProductPage(props) {
   return (
     <div className='allProductPage'>
         <div className='heading'>
-            <p>Top Result For {props.type}</p>
+            <p className='prod-type'>Top Result For {props.type}</p>
         </div>
 
         <div className='allProductContainer'>
