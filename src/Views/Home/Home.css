@@ -13,3 +13,9 @@
 .mini-product-container{
     height: 425px !important;
 }
+
+@media only screen and (max-width: 540px) {
+    .slider-head p{
+        font-size: 34px;
+    }
+}
